@@ -4,7 +4,14 @@ An example of using a `while` loop
 import math
 
 
-def menu():
+def menu() -> int:
+    """
+    Displays a menu for the user, accepts the choice from the user, and
+    returns the integer version of the value entered by the user. If the user
+    inputs a non-numeric value, then -1 is returned.
+
+    :return: int version of the input for numerical inputs, -1 for non-numerical inputs
+    """
     print("""Main menu:
     1. Square root
     2. Sine
@@ -19,12 +26,12 @@ def menu():
 
 def main():
     while True:
-        choice = menu()
+        answer = menu()
 
-        if choice == 4:
+        if answer == 4:
             break
 
-        if choice < 1 or choice > 4:
+        if answer < 1 or answer > 4:
             print('Invalid choice. Please retry.')
             continue
 
@@ -35,11 +42,11 @@ def main():
 
         num = int(num)
 
-        if choice == 1:
+        if answer == 1:
             print(f'Square root of {num} is {math.sqrt(num)}')
-        elif choice == 2:
+        elif answer == 2:
             print(f'Sine of {num} is {math.sin(num)}')
-        elif choice == 3:
+        elif answer == 3:
             print(f'Cosine of {num} is {math.cos(num)}')
 
     print('Thank you. Have a nice day.')
