@@ -10,9 +10,9 @@ from my_utils import dirr
 class Employee:
     def __init__(self, **kwargs):
         # print('Employee.__init__() called')
-        self.__name = kwargs.get('name')
-        self.__salary = kwargs.get('salary')
-        self.__dept = kwargs.get('dept', 'ADMIN').upper()
+        self.name = kwargs.get('name')
+        self.salary = kwargs.get('salary')
+        self.dept = kwargs.get('dept', 'ADMIN')
 
     def print(self):
         print(f"""    Name        : {self.__name}
