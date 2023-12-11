@@ -9,15 +9,30 @@ from my_utils import dirr
 
 class Employee:
     def __init__(self, **kwargs):
+        # print('Employee.__init__() called')
         self.__name = kwargs.get('name')
         self.__salary = kwargs.get('salary')
-        self.__dept = kwargs.get('dept', 'ADMIN')
+        self.__dept = kwargs.get('dept', 'ADMIN').upper()
 
     def print(self):
-        print(f"""
-    Name  : {self.__name}
-    Salary: {self.__salary}
-    Dept  : {self.__dept}\n""")
+        print(f"""    Name        : {self.__name}
+    Salary      : {self.__salary}
+    Dept        : {self.__dept}""")
+
+    @property
+    def name(self):
+        return None if self.__name is None else self.__name.upper()
+
+    @name.setter
+    def name(self, value):
+        if value is not None and type(value) is not str:
+            raise TypeError('name must be a str')
+
+        if value is not None:
+            if len(value) < 3 or len(value) > 15:
+                raise ValueError('name must be between 3 and 15 letters')
+
+        self.__name = value
 
     @property  # create a setter property called 'salary'
     def salary(self):
@@ -32,6 +47,17 @@ class Employee:
 
         self.__salary = value
 
+    @property
+    def dept(self):
+        return self.__dept
+
+    @dept.setter
+    def dept(self, value):
+        if value is not None and type(value) is not str:
+            raise TypeError('department must be str')
+
+        self.__dept = value.upper() if type(value) is str else None
+
 
 if __name__ == '__main__':
     e1 = Employee(name='John', dept='ACCT')
@@ -42,4 +68,7 @@ if __name__ == '__main__':
     e1.print()
     print(dirr(e1))
 
-    print(f'e1.salary is {e1.salary}')  # this is where the getter for salary is called
+    e1.name = None
+    e1.dept = 'marketing'
+    e1.print()
+    print(f'salary for {e1.name} is {e1.salary}')  # this is where the getter for salary is called

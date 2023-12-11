@@ -1,5 +1,6 @@
 from my_utils import dirr
 
+
 class Person:
     def __init__(self, **kwargs):
         self.name = kwargs.get('name')
@@ -26,7 +27,7 @@ if __name__ == '__main__':
     p1 = Person()
     print(dirr(p1))
     p1.name = 'Vinod Kumar'
-    p1.age = 51
+    p1.age = 50
     # p1.email = 'vinod@vinod.co'  # the inherited (from object) __setattr__ is called here
     # p1.__setattr__('phone', '9731424784')
     print(dirr(p1))
